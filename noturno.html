@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* O visual padrão de página é fundo branco e texto preto*/
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: Arial, sans-serif;
+            transition: 0.5s;
+            /*Deixa a troca de cor suave*/
+        }
+
+        /* Esta é a classe mágica. Quando o JS colcoar ela no body, tudo muda! */
+        .modo-escuro {
+            background-color: #1a1a1a;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+    </main>
+
+    <h1>Configurações do Sistema</h1>
+    <p>Bem-vindo ao painel de preferências.</p>
+
+    <button id="btn-tema">Ativar Modo Noturno</button>
+
+    <script>
+        //1.O JS procura o botão pelo ID e guarda na variável
+        let botao = document.getElementById('btn-tema');
+
+        //2.Adicionamos o "vigia" de cliques no botão
+        botao.addEventListener('click', function () {
+
+            //3.Ação: vai no body, acessa a lista de classes (classList)
+            //e usa o toggle (alternar)
+            //O toggle é inteligente: se a classe não existe. ele coloca. Se já existe, ele tira!
+            document.body.classList.toggle('modo-escuro');
+            //Verifica se o body AGORA contém a classe 'modo-escuro'
+            if(document.body.classList.contains('modo-escuro')){
+                //Se tem, ,muda o texto do botão para Modo Claro
+                botao.innerHTML="Voltar para Modo Claro";
+                
+            }else{
+                //Se não tem, volta o texto para Modo Noturno
+                botao.innerHTML="Ativar Modo Noturno";
+            }
+        });
+    </script>
+</body>
+
+</html>
