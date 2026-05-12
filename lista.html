@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <main>
+
+    </main>
+    <h2>Usuários Cadastrados</h2>
+
+    <ul id="lista-tela"></ul>
+    <a href="cadastro.html">Voltar para o Cadastro</a>
+    <script>
+     function carregarDados(){
+        const ul = document.getElementById('lista-tela');
+
+        let lista = JASON.parse(localSorage.getItem('bancoUsuarios')) || [];
+
+        ul.innerHTML = '';
+
+        lista.forEach(function(usuario, index){
+        ul.innerHTML += `
+
+            <li>
+                <strong>${usuario.nome}</strong> - ${usuario.email}
+                <button onclick="deletar(${index})"style="color: red; margin-left:10px;">Excluir</button>
+            </li>
+            `;
+        });
+     }  
+
+     function deletar(index) {
+        if(confirm("Tem certeza que deseja apagar")) {
+            let lista = JSON.parse(localStorage.getItem('bancoUsuarios'));
+
+            lista.splice(index, 1);
+
+            localStorage.setItem('bancoUsuarios', JSON.stringify(lista));
+            carregarDados();
+
+            
+        }
+     }
+        
+    </script>
+
+</body>
+
+</html>
